@@ -168,19 +168,20 @@ body{
 
 <div class="box">
   <h3><b>Hasil Foto Studio Mini</b></h3>
-<div class="galeri"></div>
- <script>
-for (let i = 96; i <= 169; i++) {
-  const img = document.createElement("img");
-  img.src = `g${i}.jpeg`;
-  img.alt = `Studio ${i}`;
-  img.onerror = function () {
-    this.onerror = null;
-    this.src = `g${i}.jpg`;
-  };
-  document.getElementById("galeri").appendChild(img);
-}
-</script>
+  <div id="galeri" class="galeri"></div>
+
+  <script>
+  for (let i = 96; i <= 169; i++) {
+    const img = document.createElement("img");
+    img.src = `g${i}.jpeg`;
+    img.alt = `Studio ${i}`;
+    img.onerror = function () {
+      this.onerror = null;
+      this.src = `g${i}.jpg`;
+    };
+    document.getElementById("galeri").appendChild(img);
+  }
+  </script>
 </div>
 
 <!-- ALAMAT -->
