@@ -171,16 +171,27 @@ body{
   <div id="galeri" class="galeri"></div>
 
   <script>
-  for (let i = 1; i <= 180; i++) {
-    const img = document.createElement("img");
-    img.src = `g${i}.jpeg`;
-    img.alt = `Studio ${i}`;
-    img.onerror = function () {
-      this.onerror = null;
-      this.src = `g${i}.jpg`;
-    };
-    document.getElementById("galeri").appendChild(img);
-  }
+    const galeri = document.getElementById("galeri");
+    let current = 1;
+    const total = 180;
+    const batch = 20;
+
+    function loadBatch() {
+      for (let i = current; i < current + batch && i <= total; i++) {
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.alt = `Studio ${i}`;
+        img.src = `g${i}.jpeg`;
+        img.onerror = function () {
+          this.onerror = null;
+          this.src = `g${i}.jpg`;
+        };
+        galeri.appendChild(img);
+      }
+      current += batch;
+    }
+
+    loadBatch(); // load awal
   </script>
 </div>
 
