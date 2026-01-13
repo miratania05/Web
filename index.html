@@ -168,37 +168,58 @@ body{
 
 <div class="box">
   <h3><b>Hasil Foto Studio Mini</b></h3>
+
   <div id="galeri" class="galeri"></div>
 
+  <button id="loadMore" style="
+    width:100%;
+    margin-top:12px;
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    background:#f06292;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+  ">
+    Lihat foto lainnya
+  </button>
+</div>
+
+
  <script>
-  const galeri = document.getElementById("galeri");
-  let current = 1;
-  const total = 196;
-  const batch = 20;
+const galeri = document.getElementById("galeri");
+const btn = document.getElementById("loadMore");
 
-  function loadBatch() {
-    for (let i = current; i < current + batch && i <= total; i++) {
-      const img = document.createElement("img");
-      img.loading = "lazy";
-      img.alt = `Studio ${i}`;
-      img.src = `g${i}.jpeg`;
-      img.onerror = function () {
-        this.onerror = null;
-        this.src = `g${i}.jpg`;
-      };
-      galeri.appendChild(img);
-    }
-    current += batch;
+let current = 1;
+const total = 196;
+const batch = 20;
+
+function loadBatch() {
+  for (let i = current; i < current + batch && i <= total; i++) {
+    const img = document.createElement("img");
+    img.loading = "lazy";
+    img.alt = `Studio ${i}`;
+    img.src = `g${i}.jpeg`;
+    img.onerror = function () {
+      this.onerror = null;
+      this.src = `g${i}.jpg`;
+    };
+    galeri.appendChild(img);
   }
+  current += batch;
 
-  loadBatch();
+  if (current > total) {
+    btn.style.display = "none";
+  }
+}
 
-  window.addEventListener("scroll", () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 300) {
-      loadBatch();
-    }
-  });
+btn.addEventListener("click", loadBatch);
+
+// load awal
+loadBatch();
 </script>
+
 </div>
 
 <!-- ALAMAT -->
