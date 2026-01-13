@@ -191,7 +191,8 @@ body{
 
  <script>
 const galeri = document.getElementById("galeri");
-const btn = document.getElementById("loadMore");
+const btnLoad = document.getElementById("loadMore");
+const btnReset = document.getElementById("resetGaleri");
 
 let current = 1;
 const total = 196;
@@ -209,16 +210,27 @@ function loadBatch() {
     };
     galeri.appendChild(img);
   }
+
   current += batch;
 
+  btnReset.style.display = "block";
+
   if (current > total) {
-    btn.style.display = "none";
+    btnLoad.style.display = "none";
   }
 }
 
-btn.addEventListener("click", loadBatch);
+function resetGaleri() {
+  galeri.innerHTML = "";
+  current = 1;
+  btnLoad.style.display = "block";
+  btnReset.style.display = "none";
+  loadBatch();
+}
 
-// load awal
+btnLoad.addEventListener("click", loadBatch);
+btnReset.addEventListener("click", resetGaleri);
+
 loadBatch();
 </script>
 
