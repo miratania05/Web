@@ -170,29 +170,35 @@ body{
   <h3><b>Hasil Foto Studio Mini</b></h3>
   <div id="galeri" class="galeri"></div>
 
-  <script>
-    const galeri = document.getElementById("galeri");
-    let current = 1;
-    const total = 180;
-    const batch = 20;
+ <script>
+  const galeri = document.getElementById("galeri");
+  let current = 1;
+  const total = 180;
+  const batch = 20;
 
-    function loadBatch() {
-      for (let i = current; i < current + batch && i <= total; i++) {
-        const img = document.createElement("img");
-        img.loading = "lazy";
-        img.alt = `Studio ${i}`;
-        img.src = `g${i}.jpeg`;
-        img.onerror = function () {
-          this.onerror = null;
-          this.src = `g${i}.jpg`;
-        };
-        galeri.appendChild(img);
-      }
-      current += batch;
+  function loadBatch() {
+    for (let i = current; i < current + batch && i <= total; i++) {
+      const img = document.createElement("img");
+      img.loading = "lazy";
+      img.alt = `Studio ${i}`;
+      img.src = `g${i}.jpeg`;
+      img.onerror = function () {
+        this.onerror = null;
+        this.src = `g${i}.jpg`;
+      };
+      galeri.appendChild(img);
     }
+    current += batch;
+  }
 
-    loadBatch(); // load awal
-  </script>
+  loadBatch();
+
+  window.addEventListener("scroll", () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 300) {
+      loadBatch();
+    }
+  });
+</script>
 </div>
 
 <!-- ALAMAT -->
