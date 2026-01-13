@@ -188,8 +188,7 @@ body{
   <button id="resetGaleri" style="display:none;">Kembali ke awal</button>
 </div>
 
-
- <script>
+<script>
 const galeri = document.getElementById("galeri");
 const btnLoad = document.getElementById("loadMore");
 const btnReset = document.getElementById("resetGaleri");
@@ -198,7 +197,7 @@ let current = 1;
 const total = 196;
 const batch = 20;
 
-function loadBatch() {
+function loadBatch(fromClick = false) {
   for (let i = current; i < current + batch && i <= total; i++) {
     const img = document.createElement("img");
     img.loading = "lazy";
@@ -213,7 +212,9 @@ function loadBatch() {
 
   current += batch;
 
-  btnReset.style.display = "block";
+  if (fromClick) {
+    btnReset.style.display = "block";
+  }
 
   if (current > total) {
     btnLoad.style.display = "none";
@@ -225,14 +226,16 @@ function resetGaleri() {
   current = 1;
   btnLoad.style.display = "block";
   btnReset.style.display = "none";
-  loadBatch();
+  loadBatch(false);
+  galeri.scrollIntoView({ behavior: "smooth" });
 }
 
-btnLoad.addEventListener("click", loadBatch);
+btnLoad.addEventListener("click", () => loadBatch(true));
 btnReset.addEventListener("click", resetGaleri);
 
-loadBatch();
+loadBatch(false);
 </script>
+
 
 </div>
 
