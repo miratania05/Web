@@ -207,12 +207,17 @@ const galeri = document.getElementById("galeri");
 const btnLoad = document.getElementById("loadMore");
 const btnReset = document.getElementById("resetGaleri");
 
-let current = 1;
 const total = 196;
 const batch = 20;
+let current = total;
 
-function loadBatch(fromClick = false) {
-  for (let i = current; i < current + batch && i <= total; i++) {
+btnReset.style.display = "none";
+
+function loadBatch() {
+  let start = current;
+  let end = Math.max(current - batch + 1, 1);
+
+  for (let i = start; i >= end; i--) {
     const img = document.createElement("img");
     img.loading = "lazy";
     img.alt = `Studio ${i}`;
@@ -224,31 +229,32 @@ function loadBatch(fromClick = false) {
     galeri.appendChild(img);
   }
 
-  current += batch;
+  current = end - 1;
 
-  if (fromClick) {
+  if (current < total - batch) {
     btnReset.style.display = "block";
   }
 
-  if (current > total) {
+  if (current <= 0) {
     btnLoad.style.display = "none";
   }
 }
 
 function resetGaleri() {
   galeri.innerHTML = "";
-  current = 1;
-  btnLoad.style.display = "block";
+  current = total;
   btnReset.style.display = "none";
-  loadBatch(false);
+  btnLoad.style.display = "block";
+  loadBatch();
   galeri.scrollIntoView({ behavior: "smooth" });
 }
 
-btnLoad.addEventListener("click", () => loadBatch(true));
+btnLoad.addEventListener("click", loadBatch);
 btnReset.addEventListener("click", resetGaleri);
 
-loadBatch(false);
+loadBatch();
 </script>
+
 
 
 </div>
