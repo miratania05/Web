@@ -158,10 +158,10 @@ body{
 <div class="box">
   <h3><b>Tampilan Toko</b></h3>
 <div class="foto">
-  <img src="foto1.jpg" class="foto" alt="Foto toko 1">
-  <img src="foto2.jpg" class="foto" alt="Foto toko 2">
-  <img src="foto3.jpg" class="foto" alt="Foto toko 3">
-  <img src="foto4.jpg" class="foto" alt="Foto toko 4"
+  <img src="image/foto1.jpg" class="foto" alt="Foto toko 1">
+  <img src="image/foto2.jpg" class="foto" alt="Foto toko 2">
+  <img src="image/foto3.jpg" class="foto" alt="Foto toko 3">
+  <img src="image/foto4.jpg" class="foto" alt="Foto toko 4"
 </div>
 </div>
 </div>
@@ -221,7 +221,7 @@ function loadBatch() {
     const img = document.createElement("img");
     img.loading = "lazy";
     img.alt = `Studio ${i}`;
-    img.src = `g${i}.jpeg`;
+    img.src = `image/g${i}.jpeg`;
     img.onerror = function () {
       this.onerror = null;
       this.src = `g${i}.jpg`;
