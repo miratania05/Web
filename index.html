@@ -224,7 +224,7 @@ function loadBatch() {
     img.src = `image/g${i}.jpeg`;
     img.onerror = function () {
       this.onerror = null;
-      this.src = `g${i}.jpg`;
+      this.src = `image/g${i}.jpg`;
     };
     galeri.appendChild(img);
   }
